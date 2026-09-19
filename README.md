@@ -1,11 +1,13 @@
 # YÊN TỬ: PHÁT MÔN CỔ KÍNH
-*(Yen Tu: Chronicles of the Ancient Path)*
+
+_(Yen Tu: Chronicles of the Ancient Path)_
 
 Dự án game **Third-Person Action-Adventure RPG / Historical Fantasy / Puzzle** lấy bối cảnh danh sơn Yên Tử đương đại giao thoa với thời kỳ Hồng Đức (Đại Việt). Hỗ trợ chơi đơn (Solo) hoặc phối hợp 1–4 người (Online Co-op).
 
 ---
 
 ## 1. Yêu cầu Môi trường & Kỹ thuật
+
 - **Unity Version:** `Unity 6 (6000.4.6f1)` (hoặc bản Unity 6 LTS tương thích).
 - **Render Pipeline:** Universal Render Pipeline (URP).
 - **Input System:** New Input System (`com.unity.inputsystem`).
@@ -16,13 +18,16 @@ Dự án game **Third-Person Action-Adventure RPG / Historical Fantasy / Puzzle*
 ## 2. Hướng dẫn Khởi tạo cho Thành viên (Setup Guide)
 
 ### Bước 1: Cài đặt Git & Git LFS
+
 Trước khi clone repo, đảm bảo máy tính đã cài đặt **Git LFS**:
+
 ```bash
 # Kiểm tra hoặc cài đặt Git LFS
 git lfs install
 ```
 
 ### Bước 2: Clone Repository
+
 ```bash
 git clone https://github.com/Tuandao2605/Game-YenTU.git
 cd Game-YenTU
@@ -30,11 +35,13 @@ git lfs pull
 ```
 
 ### Bước 3: Chuyển sang nhánh phát triển (`dev`)
+
 ```bash
 git checkout dev
 ```
 
 ### Bước 4: Mở dự án trong Unity Editor
+
 - Khởi động **Unity Hub**.
 - Chọn **Add project from disk** và trỏ tới thư mục `Game-YenTU`.
 - Chọn đúng phiên bản **Unity 6 (6000.4.6f1)**.
@@ -57,6 +64,7 @@ feature/<name>-<task-description> (Nhánh làm việc cá nhân)
 ```
 
 ### Quy tắc làm việc trên nhánh:
+
 1. **`main`:**
    - Chỉ chứa các phiên bản đã kiểm thử ổn định, sẵn sàng build.
    - **Nghiêm cấm push trực tiếp** vào `main`.
@@ -71,6 +79,7 @@ feature/<name>-<task-description> (Nhánh làm việc cá nhân)
      - `feature/C-puzzle-light-beam`
 
 ### Quy trình tạo và đẩy nhánh:
+
 ```bash
 # 1. Cập nhật nhánh dev mới nhất
 git checkout dev
@@ -129,6 +138,7 @@ Assets/_Project/
 ## 5. Quy chuẩn Đặt tên (Naming Conventions)
 
 ### 5.1. Mã nguồn C#
+
 - **File & Class Name:** Sử dụng `PascalCase`.
   - Ví dụ: `PlayerController.cs`, `BossBase.cs`, `PuzzleMirror.cs`.
 - **Namespace:** Đặt theo cấu trúc module `YenTu.<ModuleName>`.
@@ -140,22 +150,23 @@ Assets/_Project/
 - **Methods:** Sử dụng `PascalCase` (VD: `TakeDamage()`, `ApplyPlayerScaling()`).
 
 ### 5.2. Assets & Resources
+
 Áp dụng tiền tố (prefix) theo chuẩn Unity chuẩn hóa:
 
-| Loại Asset | Tiền tố (Prefix) | Ví dụ minh họa |
-| :--- | :--- | :--- |
-| **Prefab** | `PF_` | `PF_Player_Minh`, `PF_Enemy_UAnh`, `PF_Altar_Incense` |
-| **Scene** | `SC_` | `SC_SuoiGiaiOan`, `SC_HoaYen_Hub`, `SC_ChuaDong` |
-| **Material** | `M_` | `M_StylizedRock`, `M_Water_GiaiOan`, `M_Boss_BachHo` |
-| **Texture (Albedo)** | `T_..._D` | `T_Wood_D`, `T_StoneWall_D` |
-| **Texture (Normal)** | `T_..._N` | `T_Wood_N`, `T_StoneWall_N` |
-| **Texture (Mask/Metallic/Roughness)** | `T_..._MRA` | `T_Armor_MRA` |
-| **Shader** | `SH_` | `SH_StylizedFoliage`, `SH_CorruptedAura` |
-| **VFX / Particle** | `VFX_` | `VFX_PurificationLight`, `VFX_TaAn_Burst` |
-| **Audio (Music)** | `BGM_` | `BGM_SuoiGiaiOan`, `BGM_Boss_BachHo` |
-| **Audio (SFX)** | `SFX_` | `SFX_Sword_Slash_01`, `SFX_Parry_Success` |
-| **Animator Controller** | `AC_` | `AC_Player_Minh`, `AC_Boss_BachHo` |
-| **Animation Clip** | `ANIM_` | `ANIM_Minh_LightAttack_01`, `ANIM_Hổ_Roar` |
+| Loại Asset                            | Tiền tố (Prefix) | Ví dụ minh họa                                        |
+| :------------------------------------ | :--------------- | :---------------------------------------------------- |
+| **Prefab**                            | `PF_`            | `PF_Player_Minh`, `PF_Enemy_UAnh`, `PF_Altar_Incense` |
+| **Scene**                             | `SC_`            | `SC_SuoiGiaiOan`, `SC_HoaYen_Hub`, `SC_ChuaDong`      |
+| **Material**                          | `M_`             | `M_StylizedRock`, `M_Water_GiaiOan`, `M_Boss_BachHo`  |
+| **Texture (Albedo)**                  | `T_..._D`        | `T_Wood_D`, `T_StoneWall_D`                           |
+| **Texture (Normal)**                  | `T_..._N`        | `T_Wood_N`, `T_StoneWall_N`                           |
+| **Texture (Mask/Metallic/Roughness)** | `T_..._MRA`      | `T_Armor_MRA`                                         |
+| **Shader**                            | `SH_`            | `SH_StylizedFoliage`, `SH_CorruptedAura`              |
+| **VFX / Particle**                    | `VFX_`           | `VFX_PurificationLight`, `VFX_TaAn_Burst`             |
+| **Audio (Music)**                     | `BGM_`           | `BGM_SuoiGiaiOan`, `BGM_Boss_BachHo`                  |
+| **Audio (SFX)**                       | `SFX_`           | `SFX_Sword_Slash_01`, `SFX_Parry_Success`             |
+| **Animator Controller**               | `AC_`            | `AC_Player_Minh`, `AC_Boss_BachHo`                    |
+| **Animation Clip**                    | `ANIM_`          | `ANIM_Minh_LightAttack_01`, `ANIM_Hổ_Roar`            |
 
 ---
 
