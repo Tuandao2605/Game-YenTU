@@ -1,5 +1,6 @@
 # KẾ HOẠCH PHÁT TRIỂN CHI TIẾT – TUẦN 1: PROJECT SETUP & CORE PROTOTYPE
-**Dự án:** Yên Tử: Phát Môn Cổ Kính (*Yên Tử: Tráng Hành Ký*)  
+
+**Dự án:** Yên Tử: Phát Môn Cổ Kính (_Yên Tử: Tráng Hành Ký_)  
 **Công nghệ:** Unity 6 (6000.4.6f1) URP + C# (VS Code) + Netcode for GameObjects (NGO) + Cinemachine  
 **Quy mô Co-op:** 1–5 người chơi (Solo / Online Co-op linh hoạt, Dynamic Scaling)  
 **Mục tiêu cột mốc Tuần 1 (Milestone 1):** Bản build prototype có thể chơi được (Playable Prototype), hỗ trợ 1–5 người chơi kết nối qua Host/Join LAN/Localhost, điều khiển nhân vật di chuyển góc nhìn thứ 3 với camera Cinemachine FreeLook trên bản đồ Greybox Suối Giải Oan có NavMesh.
@@ -41,15 +42,15 @@ flowchart TD
 
 ## 2. LỘ TRÌNH THỰC HIỆN THEO NGÀY (DAY-BY-DAY ROADMAP)
 
-| Ngày | Thành viên A (Lead / Gameplay) | Thành viên B (Multiplayer / System) | Thành viên C (Level / AI Environment) | Toàn đội (Milestone & Integration) |
-| :--- | :--- | :--- | :--- | :--- |
-| **Ngày 1** | Hoàn thành TASK-ALL-001 (Setup thư mục, `.gitattributes`, Git LFS, README). Tạo nhánh cá nhân `feature/A-character-controller`. | Kiểm tra `manifest.json`, cài đặt Netcode for GameObjects (NGO) và Unity Transport. Tạo nhánh `feature/B-ngo-session`. | Khảo sát concept Suối Giải Oan trong [KICHBAN.MD](KICHBAN.MD), cài đặt package ProBuilder & AI Navigation. Tạo nhánh `feature/C-greybox-suoigiaioan`. | Họp Kick-off Tuần 1, phân chia nhánh và thống nhất quy trình Pull Request (PR) vào `dev`. |
-| **Ngày 2** | Thiết kế Enum `ECharacterState`, viết khung State Machine trong `PlayerCharacterBase.cs`. | Viết `NetworkManagerUI.cs` & `SessionManager.cs` tạo giao diện nhập IP và nút bấm Host (Max 5P) / Join. | Phác thảo Blockout 2D/3D sơ đồ địa hình Suối Giải Oan (Độ cao, suối, cầu đá, Boss Arena). | Hoàn thành bộ khung mã nguồn cơ bản của từng người, push commit đầu tiên lên remote. |
-| **Ngày 3** | Cài đặt package `Cinemachine`, tạo `CinemachineFreeLook` Camera Orbit xoay theo chuột. Cấu hình New Input System (`WASD`, `Mouse Delta`). | Viết `YenTuGameManager.cs`: Đăng ký sự kiện `OnClientConnectedCallback`, lập trình logic cấp phát Player Index 1–5. | Dựng hình khối 3D (ProBuilder/Primitives) khu vực Xuất phát (5 điểm spawn) và Đoạn đường ven suối. | Sync tiến độ giữa Ngày 3, kiểm tra các package không bị xung đột phiên bản trong `Packages/`. |
-| **Ngày 4** | Lập trình di chuyển 8 hướng mượt mà, nhân vật tự động xoay hướng theo góc nhìn Camera (`Smooth Rotation`). Thêm Sprint (`Left Shift`). | Lập trình cơ chế Spawning qua `NetworkObject.SpawnWithOwnership(clientId)` và quản lý danh sách `connectedClientIds`. | Dựng khu vực Cầu Đá gãy (khu vực Puzzle Ánh Sáng) và Sân đấu Boss 1 (Boss Arena) rộng rãi, bằng phẳng. | Thành viên A export Prefab `PF_Player_Minh` tạm thời để Thành viên B dùng test logic spawn. |
-| **Ngày 5** | Hoàn thiện tính toán trọng lực, Nhảy (`Space`), kiểm tra `Grounded`. Thêm phím test đổi State hiển thị trên Console. | Test luồng Host/Join 2 client trên Localhost; xử lý Client Disconnect để dọn dẹp Player Object. | Thiết lập toàn bộ Collider chống rơi map; gắn `NavMeshSurface`, cấu hình Agent Radius/Height và Bake NavMesh. | Thử nghiệm thả `NavMeshAgent` test chạy thử trên địa hình của C để xác nhận đường đi thông suốt. |
-| **Ngày 6** | Tích hợp `NetworkTransform` vào Player Prefab; mở PR merge vào nhánh `dev`. | Hoàn thiện UI HUD hiển thị danh sách client kết nối; mở PR merge vào nhánh `dev`. | Hoàn thiện 5 vị trí `PlayerStart` chuẩn tọa độ; mở PR merge vào nhánh `dev`. | **Integration Phase:** Review & Merge cả 3 PR vào `dev`. Mở scene chung `SC_SuoiGiaiOan_Prototype` để playtest. |
-| **Ngày 7** | Sửa lỗi Camera jitter hoặc xoay sai trục. | Sửa lỗi mất đồng bộ vị trí giữa Host và Client. | Bổ sung rào chắn vô hình (Invisible Colliders) tại mép vực nguy hiểm. | **Đóng gói Build Tuần 1 (`Build_Week01_Standalone.exe`)**. Họp Retro nghiệm thu Tuần 1 và chốt Task Tuần 2. |
+| Ngày       | Thành viên A (Lead / Gameplay)                                                                                                            | Thành viên B (Multiplayer / System)                                                                                    | Thành viên C (Level / AI Environment)                                                                                                                 | Toàn đội (Milestone & Integration)                                                                              |
+| :--------- | :---------------------------------------------------------------------------------------------------------------------------------------- | :--------------------------------------------------------------------------------------------------------------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------- | :-------------------------------------------------------------------------------------------------------------- |
+| **Ngày 1** | Hoàn thành TASK-ALL-001 (Setup thư mục, `.gitattributes`, Git LFS, README). Tạo nhánh cá nhân `feature/A-character-controller`.           | Kiểm tra `manifest.json`, cài đặt Netcode for GameObjects (NGO) và Unity Transport. Tạo nhánh `feature/B-ngo-session`. | Khảo sát concept Suối Giải Oan trong [KICHBAN.MD](KICHBAN.MD), cài đặt package ProBuilder & AI Navigation. Tạo nhánh `feature/C-greybox-suoigiaioan`. | Họp Kick-off Tuần 1, phân chia nhánh và thống nhất quy trình Pull Request (PR) vào `dev`.                       |
+| **Ngày 2** | Thiết kế Enum `ECharacterState`, viết khung State Machine trong `PlayerCharacterBase.cs`.                                                 | Viết `NetworkManagerUI.cs` & `SessionManager.cs` tạo giao diện nhập IP và nút bấm Host (Max 5P) / Join.                | Phác thảo Blockout 2D/3D sơ đồ địa hình Suối Giải Oan (Độ cao, suối, cầu đá, Boss Arena).                                                             | Hoàn thành bộ khung mã nguồn cơ bản của từng người, push commit đầu tiên lên remote.                            |
+| **Ngày 3** | Cài đặt package `Cinemachine`, tạo `CinemachineFreeLook` Camera Orbit xoay theo chuột. Cấu hình New Input System (`WASD`, `Mouse Delta`). | Viết `YenTuGameManager.cs`: Đăng ký sự kiện `OnClientConnectedCallback`, lập trình logic cấp phát Player Index 1–5.    | Dựng hình khối 3D (ProBuilder/Primitives) khu vực Xuất phát (5 điểm spawn) và Đoạn đường ven suối.                                                    | Sync tiến độ giữa Ngày 3, kiểm tra các package không bị xung đột phiên bản trong `Packages/`.                   |
+| **Ngày 4** | Lập trình di chuyển 8 hướng mượt mà, nhân vật tự động xoay hướng theo góc nhìn Camera (`Smooth Rotation`). Thêm Sprint (`Left Shift`).    | Lập trình cơ chế Spawning qua `NetworkObject.SpawnWithOwnership(clientId)` và quản lý danh sách `connectedClientIds`.  | Dựng khu vực Cầu Đá gãy (khu vực Puzzle Ánh Sáng) và Sân đấu Boss 1 (Boss Arena) rộng rãi, bằng phẳng.                                                | Thành viên A export Prefab `PF_Player_Minh` tạm thời để Thành viên B dùng test logic spawn.                     |
+| **Ngày 5** | Hoàn thiện tính toán trọng lực, Nhảy (`Space`), kiểm tra `Grounded`. Thêm phím test đổi State hiển thị trên Console.                      | Test luồng Host/Join 2 client trên Localhost; xử lý Client Disconnect để dọn dẹp Player Object.                        | Thiết lập toàn bộ Collider chống rơi map; gắn `NavMeshSurface`, cấu hình Agent Radius/Height và Bake NavMesh.                                         | Thử nghiệm thả `NavMeshAgent` test chạy thử trên địa hình của C để xác nhận đường đi thông suốt.                |
+| **Ngày 6** | Tích hợp `NetworkTransform` vào Player Prefab; mở PR merge vào nhánh `dev`.                                                               | Hoàn thiện UI HUD hiển thị danh sách client kết nối; mở PR merge vào nhánh `dev`.                                      | Hoàn thiện 5 vị trí `PlayerStart` chuẩn tọa độ; mở PR merge vào nhánh `dev`.                                                                          | **Integration Phase:** Review & Merge cả 3 PR vào `dev`. Mở scene chung `SC_SuoiGiaiOan_Prototype` để playtest. |
+| **Ngày 7** | Sửa lỗi Camera jitter hoặc xoay sai trục.                                                                                                 | Sửa lỗi mất đồng bộ vị trí giữa Host và Client.                                                                        | Bổ sung rào chắn vô hình (Invisible Colliders) tại mép vực nguy hiểm.                                                                                 | **Đóng gói Build Tuần 1 (`Build_Week01_Standalone.exe`)**. Họp Retro nghiệm thu Tuần 1 và chốt Task Tuần 2.     |
 
 ---
 
@@ -73,6 +74,7 @@ flowchart TD
 ### 🗡️ THÀNH VIÊN A: LEAD / GAMEPLAY ARCHITECT
 
 #### 🎫 TICKET A-001: Character Base & State Machine Framework
+
 - **Context:** Cần lớp C# gốc quản lý trạng thái, vòng đời và thuộc tính cho **nhóm người chơi (Minh, Khang, Linh, An, và Slot 5)**. Tách biệt hoàn toàn khỏi NPC (Lê Thánh Tông, Cấm Quân kế thừa `NPCBase`).
 - **Mã nguồn chính:** `Assets/_Project/Characters/Scripts/PlayerCharacterBase.cs`
 - **Chi tiết kỹ thuật:**
@@ -107,6 +109,7 @@ flowchart TD
 ---
 
 #### 🎫 TICKET A-002: Third-Person Movement & Cinemachine Camera
+
 - **Context:** Trải nghiệm di chuyển góc nhìn thứ 3 mượt mà, phản xạ nhanh, phục vụ địa hình leo núi dốc và chiến đấu nhịp độ cao tại Yên Tử.
 - **Mã nguồn chính:**
   - `Assets/_Project/Characters/Scripts/PlayerController.cs`
@@ -138,6 +141,7 @@ flowchart TD
 ### 🌐 THÀNH VIÊN B: MULTIPLAYER / SYSTEM ENGINEER
 
 #### 🎫 TICKET B-001: NGO Multiplayer Session Setup (Host / Join / Lobby)
+
 - **Context:** Xây dựng luồng kết nối tạo phòng (Host) và tham gia phòng (Join) qua LAN/IP đơn giản, hỗ trợ phòng từ 1 đến 5 người chơi.
 - **Mã nguồn chính:**
   - `Assets/_Project/Networking/Scripts/NetworkManagerUI.cs`
@@ -161,6 +165,7 @@ flowchart TD
 ---
 
 #### 🎫 TICKET B-002: Network GameMode & 1-5 Player Spawning Architecture
+
 - **Context:** Khi có người chơi mới tham gia (từ 1 đến 5 người), Server phải tự động phân bổ điểm xuất phát hợp lý, instantiate đúng Prefab và cấp quyền sở hữu.
 - **Mã nguồn chính:** `Assets/_Project/Networking/Scripts/YenTuGameManager.cs`
 - **Chi tiết kỹ thuật:**
@@ -192,6 +197,7 @@ flowchart TD
 ### 🏔️ THÀNH VIÊN C: LEVEL / ENEMY / CONTENT ENGINEER
 
 #### 🎫 TICKET C-001: Greybox Level 1 – Suối Giải Oan Prototype (Stylized)
+
 - **Context:** Dựng bản đồ không gian dạng khối tối giản (Greybox / Blockout) theo đúng cấu trúc Chapter 1 trong kịch bản để cả nhóm test di chuyển, camera và mạng.
 - **Scene làm việc:** `Assets/_Project/Environment/Levels/SC_SuoiGiaiOan_Prototype.unity`
 - **Chi tiết kỹ thuật:**
@@ -213,6 +219,7 @@ flowchart TD
 ---
 
 #### 🎫 TICKET C-002: Unity NavMesh & AI Environmental Setup
+
 - **Context:** Xây dựng hệ thống đường đi (Pathfinding) trên địa hình núi đá Suối Giải Oan để chuẩn bị cho quái thường U Ảnh và Boss Bạch Hổ ở Tuần 2.
 - **Chi tiết kỹ thuật:**
   1. **Tích hợp Package AI Navigation:**
@@ -232,6 +239,7 @@ flowchart TD
 ## 4. QUY TRÌNH TÍCH HỢP & NGHIỆM THU CUỐI TUẦN 1 (INTEGRATION & QA)
 
 ### 4.1. Quy trình Merge Code vào nhánh `dev` (Ngày 6)
+
 1. Cả 3 thành viên thực hiện `git pull origin dev` vào nhánh cá nhân và giải quyết xung đột local nếu có.
 2. Tạo 3 Pull Request (PR) độc lập trên GitHub:
    - PR 1: `feature/A-character-controller` $\rightarrow$ `dev`
@@ -243,19 +251,20 @@ flowchart TD
 
 ### 4.2. Ma trận Kiểm thử Tích hợp (Integration QA Matrix)
 
-| Mã Test | Kịch bản Kiểm thử | Thao tác thực hiện | Kết quả mong đợi (Pass Criteria) |
-| :--- | :--- | :--- | :--- |
-| **TC-01** | Single-player Offline Movement | Mở scene, điều khiển Player bấm `WASD`, `Shift`, `Space`. | Di chuyển 8 hướng mượt, chạy nhanh tăng tốc, nhảy trọng lực tự nhiên, không giật lag. |
-| **TC-02** | Cinemachine Camera Orbit | Di chuyển chuột quanh nhân vật; chạy ngoằn ngoèo. | Camera xoay 360 độ quanh player mượt mà, nhân vật xoay mặt theo hướng camera khi bước đi. |
-| **TC-03** | Localhost LAN Session (2P) | Máy 1 bấm HOST, Máy 2 nhập `127.0.0.1` bấm JOIN. | Máy 2 kết nối thành công trong < 1 giây; Server spawn 2 nhân vật tại 2 vị trí khác nhau. |
-| **TC-04** | State & Movement Replication | Player 1 bấm chạy/nhảy; Player 2 quan sát. | Vị trí, hướng quay và trạng thái của Player 1 được đồng bộ mượt mà trên màn hình Player 2. |
-| **TC-05** | Map Traversal & Colliders | 2 Người chơi cùng chạy từ Trạm xuất phát đến Boss Arena. | Không ai bị rơi khỏi map; leo qua bậc đá và cầu gãy trơn tru, không kẹt va chạm. |
-| **TC-06** | NavMesh Continuity | Kích hoạt Test Agent chạy dọc tuyến đường suối. | AI Agent di chuyển tự nhiên từ đầu suối vào trung tâm Boss Arena mà không đâm đầu vào vách đá. |
-| **TC-07** | Stress Test Spawning (5P) | Kết nối 5 cửa sổ game Client cùng lúc vào 1 Host. | 5 Nhân vật xuất hiện tại đúng 5 điểm `PlayerStart_0..4`, không spawn đè lên nhau. |
+| Mã Test   | Kịch bản Kiểm thử              | Thao tác thực hiện                                        | Kết quả mong đợi (Pass Criteria)                                                               |
+| :-------- | :----------------------------- | :-------------------------------------------------------- | :--------------------------------------------------------------------------------------------- |
+| **TC-01** | Single-player Offline Movement | Mở scene, điều khiển Player bấm `WASD`, `Shift`, `Space`. | Di chuyển 8 hướng mượt, chạy nhanh tăng tốc, nhảy trọng lực tự nhiên, không giật lag.          |
+| **TC-02** | Cinemachine Camera Orbit       | Di chuyển chuột quanh nhân vật; chạy ngoằn ngoèo.         | Camera xoay 360 độ quanh player mượt mà, nhân vật xoay mặt theo hướng camera khi bước đi.      |
+| **TC-03** | Localhost LAN Session (2P)     | Máy 1 bấm HOST, Máy 2 nhập `127.0.0.1` bấm JOIN.          | Máy 2 kết nối thành công trong < 1 giây; Server spawn 2 nhân vật tại 2 vị trí khác nhau.       |
+| **TC-04** | State & Movement Replication   | Player 1 bấm chạy/nhảy; Player 2 quan sát.                | Vị trí, hướng quay và trạng thái của Player 1 được đồng bộ mượt mà trên màn hình Player 2.     |
+| **TC-05** | Map Traversal & Colliders      | 2 Người chơi cùng chạy từ Trạm xuất phát đến Boss Arena.  | Không ai bị rơi khỏi map; leo qua bậc đá và cầu gãy trơn tru, không kẹt va chạm.               |
+| **TC-06** | NavMesh Continuity             | Kích hoạt Test Agent chạy dọc tuyến đường suối.           | AI Agent di chuyển tự nhiên từ đầu suối vào trung tâm Boss Arena mà không đâm đầu vào vách đá. |
+| **TC-07** | Stress Test Spawning (5P)      | Kết nối 5 cửa sổ game Client cùng lúc vào 1 Host.         | 5 Nhân vật xuất hiện tại đúng 5 điểm `PlayerStart_0..4`, không spawn đè lên nhau.              |
 
 ---
 
 ### 4.3. Tiêu chí Đóng gói Bản Build (Definition of Release)
+
 - Đóng gói file cài đặt độc lập: `Build_Week01_Standalone.exe` (Windows x64).
 - Không có bất kỳ lỗi đỏ (NullReferenceException / MissingReference) nào xuất hiện trong Unity Console Log khi chạy thực tế.
 - Tất cả thành viên trong nhóm xác nhận nghiệm thu thành công cột mốc Tuần 1, sẵn sàng bước sang **Tuần 2: Combat System (Light/Heavy/Parry), Enemy AI (U Ảnh) & Boss 1 Prototype (Bạch Ngạch Hổ Thần)**.
